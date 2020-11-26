@@ -7,10 +7,10 @@
   "main": "dist/nodejs/index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./src/*.ts",
-    "build": "npm run lint && ./node_modules/.bin/tsc && npm run rollup",
+    "build": "yarn lint && ./node_modules/.bin/tsc ",
     "docs": "./node_modules/typedoc/bin/typedoc --out ./docs/ ./src/",
     "compound_docs": "node ./scripts/compound-docs.js",
-    "prepare": "npm run build",
+    "prepare": "yarn run build",
     "publish_patch": "npm version patch && npm publish --access public",
     "publish_minor": "npm version minor && npm publish --access public",
     "publish_major": "npm version major && npm publish --access public",
@@ -31,8 +31,7 @@
     "ethereum"
   ],
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/core": "^7.12.9",
     "@babel/preset-typescript": "^7.10.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -43,7 +42,7 @@
     "docblock-parser": "^1.0.0",
     "eslint": "^7.9.0",
     "jest": "^26.0.1",
-    "rollup": "^2.15.0",
+    "rollup": "^2.33.3",
     "rollup-plugin-babel-minify": "^10.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
