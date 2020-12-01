@@ -32,7 +32,9 @@ function validateAsset(
     (!cTokens.includes(cTokenName) || !underlyings.includes(underlyingName)) &&
     !opfAssets.includes(underlyingName)
   ) {
-    throw Error(errorPrefix + 'Argument `' + argument + '` is not supported.');
+    console.log(cTokens, underlyings, opfAssets)
+    console.log(cTokenName, cTokens.includes(cTokenName), underlyings.includes(underlyingName), opfAssets.includes(underlyingName))
+    throw Error(errorPrefix + 'Pricefeed Argument `' + argument + '` is not supported.');
   }
 
   const underlyingDecimals = decimals[underlyingName];
@@ -77,15 +79,15 @@ async function cTokenExchangeRate(
  * ```
  * const compound = new Compound(window.ethereum);
  * let price;
- * 
+ *
  * (async function () {
- * 
+ *
  *   price = await compound.getPrice(Compound.WBTC);
  *   console.log('WBTC in USD', price); // 6 decimals, see Open Price Feed docs
- * 
+ *
  *   price = await compound.getPrice(Compound.BAT, Compound.USDC); // supports cTokens too
  *   console.log('BAT in USDC', price);
- * 
+ *
  * })().catch(console.error);
  * ```
  */
@@ -107,11 +109,12 @@ export async function getPrice(
   ] = validateAsset.bind(this)(inAsset, 'inAsset', errorPrefix);
 
   const priceFeedAddress = address[this._network.name].PriceFeed;
+  console.log({priceFeedAddress})
   const trxOptions: CallOptions = {
     _compoundProvider: this._provider,
     abi: abi.PriceFeed,
   };
-
+  console.log({underlyingName, inAssetUnderlyingName})
   const assetUnderlyingPrice = await eth.read(priceFeedAddress, 'price', [ underlyingName ], trxOptions);
   const inAssetUnderlyingPrice =  await eth.read(priceFeedAddress, 'price', [ inAssetUnderlyingName ], trxOptions);
 
