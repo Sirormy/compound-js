@@ -7,7 +7,7 @@ import * as priceFeed from './priceFeed';
 import * as comp from './comp';
 import * as gov from './gov';
 import * as api from './api';
-import { constants, decimals } from './constants';
+import { constants, decimals, errorCodes } from './constants';
 import { Provider, CompoundOptions, CompoundInstance } from './types';
 
 // Turn off Ethers.js warnings
@@ -85,5 +85,6 @@ Compound.comp = {
   getCompAccrued: comp.getCompAccrued,
 };
 Compound.constants = constants
+Compound.errorCodes = errorCodes
 
 export = Compound;

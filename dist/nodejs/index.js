@@ -78,5 +78,6 @@ Compound.comp = {
     getCompAccrued: comp.getCompAccrued
 };
 Compound.constants = constants_1.constants;
+Compound.errorCodes = constants_1.errorCodes;
 module.exports = Compound;
 //# sourceMappingURL=index.js.map
